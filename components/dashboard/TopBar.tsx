@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Wallet, Bell, Globe, UserCircle, LogOut, Settings } from "lucide-react";
+import ProfileAvatar from "@/components/dashboard/ProfileAvatar";
 import Link from "next/link";
 import MobileNav from "@/components/dashboard/MobileNav";
 import { logout } from "@/lib/session";
@@ -83,13 +84,13 @@ export default function TopBar() {
 
         {/* Profile */}
         <div className="relative">
-          <button
+                    <button
             type="button"
             aria-label="Profile menu"
             onClick={() => toggle("profile")}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-blue/10 text-blue"
+            className="flex h-9 w-9 items-center justify-center rounded-full"
           >
-            <UserCircle size={20} />
+            <ProfileAvatar size={36} />
           </button>
           {openMenu === "profile" && (
             <div className="absolute right-0 top-11 z-40 w-52 rounded-xl border border-line bg-white p-1.5 shadow-lg">

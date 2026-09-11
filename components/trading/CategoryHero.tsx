@@ -6,14 +6,7 @@ import { MarketCategory } from "@/types/instrument";
 import WorldMapBackground from "@/components/ui/WorldMapBackground";
 import FloatingBadge from "@/components/trading/FloatingBadge";
 
-const positions: React.CSSProperties[] = [
-  { top: "18%", left: "8%" },
-  { top: "62%", left: "4%" },
-  { top: "12%", right: "10%" },
-  { top: "70%", right: "6%" },
-  { top: "40%", left: "48%" },
-  { top: "85%", left: "38%" },
-];
+
 
 export default function CategoryHero({ category }: { category: MarketCategory }) {
   return (
@@ -21,9 +14,7 @@ export default function CategoryHero({ category }: { category: MarketCategory })
       <WorldMapBackground className="text-white/25" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-blue-deep/20 via-blue-deep/60 to-blue-deep" />
 
-      {category.badges.slice(0, positions.length).map((b, i) => (
-        <FloatingBadge key={b} label={b} style={positions[i]} delay={i * 0.15} duration={4 + (i % 3)} />
-      ))}
+      
 
       <div className="relative z-10 mx-auto max-w-content px-6 text-center lg:px-10">
         <motion.p

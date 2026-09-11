@@ -79,18 +79,17 @@ export default function Hero() {
   </Link>
 </motion.div>
 
-{/* New User Rewards */}
+{/* New User Rewards CTA */}
 <motion.div
   variants={item}
-  className="mt-4 flex flex-col items-center justify-center"
+  className="mt-4 w-full sm:w-auto px-4 sm:px-0"
 >
-  <p className="text-sm font-semibold text-white">
-    Up to <span className="text-cyan">50% Rewards</span> for New Users
-  </p>
-
-  <p className="mt-1 text-xs text-white/50">
-    Join INVEX TRADE today and unlock exclusive rewards.
-  </p>
+  <Link
+    href="/promotions"
+    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan to-blue px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-cyan/20 transition-all duration-300 hover:scale-105 active:scale-95"
+  >
+    Up to 50% Rewards for New Users
+  </Link>
 </motion.div>
 
 <motion.p

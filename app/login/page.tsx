@@ -16,7 +16,7 @@ export default function LoginPage() {
       <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden lg:flex">
         {/* 👇 apni image yahan daal do — path replace kar dena */}
         <Image
-          src="/images/login-bg.jpg"
+          src="/images/signup.jpeg"
           alt=""
           fill
           priority

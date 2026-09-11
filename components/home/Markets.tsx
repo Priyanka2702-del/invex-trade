@@ -1,11 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 // ==========================================
 // 1. CONTENT SECTION
 // ==========================================
-const sectionData = {
+const sectionData: {
+  sectionTitle: string;
+  sectionTitleHighlight: string;
+  subtitle: string;
+  description: string;
+  cards: {
+    id: string;
+    badge: string;
+    title: string;
+    description: string;
+    href?: string;
+    linkLabel?: string;
+    bgImage?: string;
+  }[];
+} = {
   sectionTitle: "Discover Our",
   sectionTitleHighlight: "Algo AI Bot",
   subtitle: "Trade Smarter with AI-Powered Automation",
@@ -15,11 +31,13 @@ const sectionData = {
   cards: [
     {
       id: "card-1",
-      badge: "AI AUTOMATION",
-      title: "Speed & Precision Execution",
+      badge: "50% DEPOSIT BONUS",
+      title: "Boost Your Trading with 50% Bonus",
       description:
-        "Harness advanced algorithms and AI-driven market analysis to identify high-probability trading opportunities in real time.",
-      bgImage: "/images/AUTOMATION.png",
+        "Get up to a 50% deposit bonus and unlock up to $100 in bonus rewards when you start trading with INVEX TRADE.",
+      href: "/bonus",
+      linkLabel: "Get Your Bonus",
+      bgImage: "/images/BONUS.png",
     },
     {
       id: "card-2",
@@ -77,14 +95,13 @@ export default function Markets() {
 
         {/* --- 2 CARDS GRID --- */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-2 lg:gap-8">
-          
-          {/* ================= CARD 1 (Dark Theme) ================= */}
+          {/* ================= CARD 1 — 50% Deposit Bonus ================= */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="group relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-[24px] shadow-xl sm:min-h-[360px] md:min-h-[400px] lg:rounded-[32px]"
+            className="group relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-[24px] bg-[#0A1128] shadow-xl sm:min-h-[360px] md:min-h-[400px] lg:rounded-[32px]"
           >
             {/* Background Image */}
             <div
@@ -109,6 +126,16 @@ export default function Markets() {
                 <p className="mt-2 text-sm leading-relaxed text-slate-200 sm:text-base drop-shadow-sm">
                   {sectionData.cards[0].description}
                 </p>
+
+                {sectionData.cards[0].href && (
+                  <Link
+                    href={sectionData.cards[0].href}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition hover:text-cyan sm:text-base"
+                  >
+                    {sectionData.cards[0].linkLabel}
+                    <ArrowUpRight size={17} />
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>
