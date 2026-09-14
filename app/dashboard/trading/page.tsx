@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -29,17 +29,6 @@ export default function TradingPage() {
             <Radio size={16} className="text-cyan" />
             Live Trading
           </Link>
-          <a
-            href="https://web.metatrader.app/terminal?mode=demo&lang=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex shrink-0 items-center gap-2 rounded-lg bg-blue-deep px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0L9 3 12 12l3 9zm-9 3v12c2 0 4-1.83 4-4V5a2 2 0 00-2-2H5a2 2 0 00-2 2v8z" />
-            </svg>
-            MT Demo
-          </a>
         </div>
       </div>
 
