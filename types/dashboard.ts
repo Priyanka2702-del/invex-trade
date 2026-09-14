@@ -92,4 +92,5 @@ export type DownloadPlatform = {
   description: string;
   category: "Desktop" | "Mobile" | "Web" | "Tools";
   available: boolean;
+  url?: string;
 };

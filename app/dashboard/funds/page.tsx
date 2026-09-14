@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Info } from "lucide-react";
 import { transactions, fundingMethods, userAccounts } from "@/data/dashboard";
 
@@ -13,8 +14,21 @@ const tabs: { key: Tab; label: string }[] = [
   { key: "history", label: "History" },
 ];
 
+const validTabs: Tab[] = ["deposit", "withdraw", "transfer", "history"];
+
 export default function FundsPage() {
-  const [tab, setTab] = useState<Tab>("deposit");
+  return (
+    <Suspense fallback={null}>
+      <FundsPageInner />
+    </Suspense>
+  );
+}
+
+function FundsPageInner() {
+  const searchParams = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const initialTab: Tab = validTabs.includes(requestedTab as Tab) ? (requestedTab as Tab) : "deposit";
+  const [tab, setTab] = useState<Tab>(initialTab);
 
   return (
     <div>

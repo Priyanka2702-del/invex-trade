@@ -1,9 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { accountSummary } from "@/data/dashboard";
 
-const actions = ["Deposit", "Withdrawal", "Transfer", "History"];
+const actions: { label: string; tab: "deposit" | "withdraw" | "transfer" | "history" }[] = [
+  { label: "Deposit", tab: "deposit" },
+  { label: "Withdrawal", tab: "withdraw" },
+  { label: "Transfer", tab: "transfer" },
+  { label: "History", tab: "history" },
+];
 
 export default function AssetsCard() {
   return (
@@ -25,16 +31,17 @@ export default function AssetsCard() {
 
       <div className="flex flex-wrap gap-2">
         {actions.map((a, i) => (
-          <button
-            key={a}
+          <Link
+            key={a.tab}
+            href={`/dashboard/funds?tab=${a.tab}`}
             className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
               i === 0
                 ? "bg-teal-600 text-white hover:bg-teal-700"
                 : "bg-paper text-ink hover:bg-line/60"
             }`}
           >
-            {a}
-          </button>
+            {a.label}
+          </Link>
         ))}
       </div>
     </div>

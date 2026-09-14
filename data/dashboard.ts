@@ -156,13 +156,47 @@ export const promotions: Promotion[] = [
 
 // ===== Downloads =====
 export const downloadPlatforms: DownloadPlatform[] = [
-  { id: "mt5-desktop", name: "MT5 for Windows", description: "The full MetaTrader 5 desktop terminal.", category: "Desktop", available: false },
-  { id: "mt5-mac", name: "MT5 for macOS", description: "MetaTrader 5 terminal for Mac.", category: "Desktop", available: false },
-  { id: "mt5-ios", name: "MT5 for iOS", description: "Trade on the go from your iPhone or iPad.", category: "Mobile", available: false },
-  { id: "mt5-android", name: "MT5 for Android", description: "Trade on the go from your Android device.", category: "Mobile", available: false },
-  { id: "mt5-web", name: "MT5 WebTrader", description: "Trade directly from your browser, no install required.", category: "Web", available: false },
+  {
+    id: "mt5-desktop",
+    name: "MT5 for Windows",
+    description: "The full MetaTrader 5 desktop terminal.",
+    category: "Desktop",
+    available: true,
+    url: "https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe",
+  },
+  {
+    id: "mt5-mac",
+    name: "MT5 for macOS",
+    description: "MetaTrader 5 terminal for Mac.",
+    category: "Desktop",
+    available: true,
+    url: "https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg",
+  },
+  {
+    id: "mt5-ios",
+    name: "MT5 for iOS",
+    description: "Trade on the go from your iPhone or iPad.",
+    category: "Mobile",
+    available: true,
+    url: "https://download.mql5.com/cdn/mobile/mt5/ios",
+  },
+  {
+    id: "mt5-android",
+    name: "MT5 for Android",
+    description: "Trade on the go from your Android device.",
+    category: "Mobile",
+    available: true,
+    url: "https://download.mql5.com/cdn/mobile/mt5/android",
+  },
+  {
+    id: "mt5-web",
+    name: "MT5 WebTrader",
+    description: "Trade directly from your browser, no install required.",
+    category: "Web",
+    available: true,
+    url: "https://web.metatrader.app/terminal?mode=demo&lang=en",
+  },
 ];
-
 // ===== Tools =====
 export const dashboardTools = [
   { key: "pip", label: "Pip Calculator", description: "Work out the value of a single pip for your position size." },

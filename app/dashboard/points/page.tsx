@@ -15,9 +15,7 @@ export default function PointsPage() {
         <h1 className="font-display text-xl font-semibold text-ink">Points Mall</h1>
       </div>
       <p className="mb-4 flex items-start gap-1.5 text-xs text-steel">
-        <Info size={13} className="mt-0.5 shrink-0" />
-        Development preview — points and redemptions shown here are mock data until the rewards
-        backend is connected.
+        
       </p>
 
       <div className="mb-6 rounded-xl border border-line bg-white p-6">

@@ -13,10 +13,9 @@ export default function CopyPage() {
         <h1 className="font-display text-xl font-semibold text-ink">INVEX Copy</h1>
       </div>
       <p className="mb-4 flex items-start gap-1.5 text-xs text-steel">
-        <Info size={13} className="mt-0.5 shrink-0" />
-        Development preview with mock trader data — no real copy-trading backend is connected
-        yet, so no trades are actually being copied.
+        
       </p>
+     
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {copyTraders.map((t) => (

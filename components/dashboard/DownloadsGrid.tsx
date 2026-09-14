@@ -1,5 +1,6 @@
-import { Monitor, Smartphone, Globe2, Info } from "lucide-react";
+import { Monitor, Smartphone, Globe2, Info, Download as DownloadIcon } from "lucide-react";
 import { downloadPlatforms } from "@/data/dashboard";
+import type { DownloadPlatform } from "@/types/dashboard";
 
 const categoryIcon = {
   Desktop: Monitor,
@@ -7,6 +8,32 @@ const categoryIcon = {
   Web: Globe2,
   Tools: Monitor,
 } as const;
+
+function DownloadButton({ platform }: { platform: DownloadPlatform }) {
+  if (platform.available && platform.url) {
+    return (
+      <a
+        href={platform.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-lg bg-blue py-2.5 text-sm font-semibold text-white transition hover:bg-blue-deep"
+      >
+        <DownloadIcon size={15} />
+        Download
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      disabled
+      className="mt-4 w-full rounded-lg bg-paper py-2.5 text-sm font-semibold text-steel disabled:cursor-not-allowed"
+    >
+      Coming soon
+    </button>
+  );
+}
 
 export default function DownloadsGrid() {
   return (
@@ -18,8 +45,8 @@ export default function DownloadsGrid() {
 
       <p className="mb-4 flex items-start gap-1.5 text-xs text-steel">
         <Info size={13} className="mt-0.5 shrink-0" />
-        Real download links will appear here once the platform build/hosting is finalized —
-        nothing below is a working download yet.
+        These link out to the official MetaTrader 5 installers/store pages. Once INVEX TRADE has
+        its own branded build, these will be replaced with our own hosted downloads.
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -33,13 +60,7 @@ export default function DownloadsGrid() {
               <p className="text-xs font-semibold uppercase tracking-wide text-steel">{d.category}</p>
               <h2 className="mt-1 font-display text-base font-semibold text-ink">{d.name}</h2>
               <p className="mt-2 flex-1 text-sm text-steel">{d.description}</p>
-              <button
-                type="button"
-                disabled={!d.available}
-                className="mt-4 w-full rounded-lg bg-paper py-2.5 text-sm font-semibold text-steel disabled:cursor-not-allowed"
-              >
-                {d.available ? "Download" : "Coming soon"}
-              </button>
+              <DownloadButton platform={d} />
             </div>
           );
         })}

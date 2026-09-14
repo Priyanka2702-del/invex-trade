@@ -50,8 +50,12 @@ export default function TradingPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <PositionsTable />
-        <OrderPanel symbol={symbol} />
+        <div className="min-w-0">
+          <PositionsTable />
+        </div>
+        <div className="min-w-0">
+          <OrderPanel symbol={symbol} />
+        </div>
       </div>
     </div>
   );
