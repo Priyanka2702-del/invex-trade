@@ -1,14 +1,14 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Radio, ArrowLeft, ExternalLink, ShieldCheck } from "lucide-react";
+import { useState } from "react";
 
-// Set NEXT_PUBLIC_MT5_WEBTRADER_URL once the real MT5 WebTrader integration
-// is available. Until then, this page shows a clear "not yet configured"
-// state instead of a fake trading platform.
 const MT5_WEBTRADER_URL = process.env.NEXT_PUBLIC_MT5_WEBTRADER_URL ?? "";
 
 export default function LiveTradingPage() {
+  const [showIframe, setShowIframe] = useState(false);
+
   return (
     <div>
       <Link
@@ -27,7 +27,7 @@ export default function LiveTradingPage() {
         {MT5_WEBTRADER_URL ? (
           <>
             <p className="mx-auto mt-2 max-w-md text-sm text-steel">
-              You're about to open the MT5 WebTrader in a new tab to place live trades.
+              You are about to open the MT5 WebTrader to place live trades.
             </p>
             <a
               href={MT5_WEBTRADER_URL}
@@ -35,7 +35,7 @@ export default function LiveTradingPage() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-deep"
             >
-              Open MT5 WebTrader <ExternalLink size={15} />
+              Open MetaTrader <ExternalLink size={15} />
             </a>
           </>
         ) : (
@@ -45,42 +45,34 @@ export default function LiveTradingPage() {
               This page is ready to launch the MT5 WebTrader as soon as it is.
             </p>
             <a
-              href="https://web.metatrader.app/terminal?mode=demo&lang=en"
+              href="https://web.metatrader.app/terminal?lang=en"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue-deep px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-deep"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue-deep px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
             >
-              Open MetaTrader Demo <ExternalLink size={15} />
+              Open MetaTrader <ExternalLink size={15} />
             </a>
           </>
         )}
 
-        {/* Iframe Test Section for manual checking - opens iframe to test embedding issues */}
-        <div className="mt-6 rounded-xl border border-line bg-white p-6">
+        {/* MetaTrader Embedded View */}
+        <div className="mt-6 rounded-xl border border-line bg-white p-6 text-left">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-ink">MetaTrader Iframe Test</h3>
+            <h3 className="font-semibold text-ink">MetaTrader WebTrader</h3>
             <button
-              onClick={() => {
-                const iframeDiv = document.getElementById('mt-iframe-test');
-                iframeDiv.style.display = iframeDiv.style.display === 'none' ? 'block' : 'none';
-              }}
-              className="text-xs text-blue hover:text-ink"
+              onClick={() => setShowIframe(!showIframe)}
+              className="inline-flex items-center gap-2 rounded-lg border border-blue-deep px-4 py-2 text-sm font-semibold text-blue-deep transition hover:bg-blue-deep hover:text-white"
             >
-              Toggle Iframe
+              {showIframe ? "Hide WebTrader" : "Launch WebTrader"}
             </button>
           </div>
-          <iframe
-            id="mt-iframe-test"
-            src="https://web.metatrader.app/terminal?mode=demo&lang=en"
-            style={{ border: 'none', width: '100%', height: '800px' }}
-            onLoad={() => console.log('Iframe loaded successfully') }
-            onError={() => {
-              console.log('Iframe failed to load - likely X-Frame-Options blocking');
-              alert('Iframe blocked - this is why we use new tab approach');
-              const iframeDiv = document.getElementById('mt-iframe-test');
-              iframeDiv.style.display = 'none';
-            }}
-          />
+          {showIframe && (
+            <iframe
+              src="https://web.metatrader.app/terminal?lang=en"
+              style={{ border: "none", width: "100%", height: "800px", borderRadius: "8px" }}
+              onLoad={() => console.log("Iframe loaded successfully")}
+            />
+          )}
         </div>
         <br />
 
@@ -90,7 +82,7 @@ export default function LiveTradingPage() {
             Charts and market analysis on the{" "}
             <Link href="/dashboard/trading" className="font-medium text-blue hover:underline">
               INVEX Trading
-            </Link>
+            </Link>{" "}
             page are powered by TradingView and are separate from live order execution, which
             only happens through your connected MT5 account.
           </span>

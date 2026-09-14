@@ -21,11 +21,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   if (!checked) return null;
 
   return (
-    <div className="flex min-h-screen bg-paper">
+    <div className="flex h-screen overflow-hidden bg-paper">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex h-screen flex-1 flex-col overflow-hidden">
         <TopBar />
-        <main className="px-6 py-6 lg:px-8">{children}</main>
+        <main className="flex-1 overflow-y-auto px-6 py-6 lg:px-8">{children}</main>
       </div>
     </div>
   );

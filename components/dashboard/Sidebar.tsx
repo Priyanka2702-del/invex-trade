@@ -31,7 +31,7 @@ const mainLinks = [
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(true);
+  const [accountOpen, setAccountOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -45,7 +45,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`relative hidden shrink-0 flex-col border-r border-line bg-white py-5 transition-all duration-200 lg:flex ${
+      className={`relative hidden h-screen shrink-0 flex-col overflow-hidden border-r border-line bg-white py-5 transition-all duration-200 lg:flex ${
         collapsed ? "w-[76px] px-3" : "w-64 px-5"
       }`}
     >
@@ -64,7 +64,7 @@ export default function Sidebar() {
         <Logo />
       </Link>
 
-      {/* Live Trading — clearly visible entry point into the future MT5 flow */}
+      {/* Live Trading button */}
       <Link
         href="/dashboard/live-trading"
         className={`mb-4 flex items-center gap-3 rounded-lg bg-blue-deep px-3 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 ${
@@ -76,72 +76,8 @@ export default function Sidebar() {
         {!collapsed && "Live Trading"}
       </Link>
 
-      {/* MetaTrader Demo Link - opens in new tab */}
-      <a
-        href="https://web.metatrader.app/terminal?mode=demo&lang=en"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`mb-4 flex items-center gap-3 rounded-lg bg-blue-deep px-3 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 ${
-          collapsed ? "justify-center" : ""
-        }`}
-        title="MetaTrader Demo"
-      >
-        <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0L9 3 12 12l3 9zm-9 3v12c2 0 4-1.83 4-4V5a2 2 0 00-2-2H5a2 2 0 00-2 2v8z" />
-        </svg>
-        {!collapsed && "MetaTrader Demo"}
-      </a>
-
-      {/* Account / UID block */}
-      <button
-        type="button"
-        onClick={() => setAccountOpen((v) => !v)}
-        className="mb-4 flex w-full items-center gap-3 rounded-lg border border-line px-3 py-2.5 text-left hover:bg-paper"
-      >
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue/10 font-display text-sm font-bold text-blue">
-          IN
-        </div>
-        {!collapsed && (
-          <>
-            <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-semibold text-ink">UID: 3769969</div>
-              <div className="text-xs text-steel">Individual Account</div>
-            </div>
-            <ChevronUp
-              size={16}
-              className={`shrink-0 text-steel transition-transform ${accountOpen ? "" : "rotate-180"}`}
-            />
-          </>
-        )}
-      </button>
-
-      {accountOpen && !collapsed && (
-        <nav className="mb-4 flex flex-col gap-0.5 border-b border-line pb-4">
-          {accountLinks.map((l) => (
-            <Link
-              key={l.label}
-              href={l.href}
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
-                isActive(l.href) ? "bg-blue/10 text-blue" : "text-steel hover:bg-paper hover:text-ink"
-              }`}
-            >
-              <l.icon size={17} />
-              {l.label}
-            </Link>
-          ))}
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-steel transition hover:bg-paper hover:text-ink"
-          >
-            <LogOut size={17} />
-            Logout
-          </button>
-        </nav>
-      )}
-
-      {/* Main nav */}
-      <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto">
+      {/* Main nav - flex-1 so it grows and pushes account block to bottom */}
+      <nav className="flex flex-col gap-0.5">
         {mainLinks.map((l) => (
           <Link
             key={l.label}
@@ -166,17 +102,70 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Mobile logout fallback (main nav area doubles up on small/collapsed states) */}
-      {collapsed && (
+      {/* Account / UID block — pinned to bottom */}
+      <div className="relative mt-4 border-t border-line pt-4">
+        {/* Dropdown menu — opens upward (absolutely positioned above trigger) */}
+        {accountOpen && !collapsed && (
+          <nav className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-0.5 rounded-lg border border-line bg-white p-1 shadow-md">
+            {accountLinks.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                  isActive(l.href) ? "bg-blue/10 text-blue" : "text-steel hover:bg-paper hover:text-ink"
+                }`}
+              >
+                <l.icon size={17} />
+                {l.label}
+              </Link>
+            ))}
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-steel transition hover:bg-paper hover:text-ink"
+            >
+              <LogOut size={17} />
+              Logout
+            </button>
+          </nav>
+        )}
+
+        {/* Account dropdown trigger */}
         <button
           type="button"
-          onClick={handleLogout}
-          className="mt-2 flex items-center justify-center rounded-lg px-3 py-2.5 text-steel transition hover:bg-paper hover:text-ink"
-          title="Logout"
+          onClick={() => setAccountOpen((v) => !v)}
+          className="flex w-full items-center gap-3 rounded-lg border border-line px-3 py-2.5 text-left hover:bg-paper"
         >
-          <LogOut size={17} />
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue/10 font-display text-sm font-bold text-blue">
+            IN
+          </div>
+          {!collapsed && (
+            <>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-sm font-semibold text-ink">UID: 3769969</div>
+                <div className="text-xs text-steel">Individual Account</div>
+              </div>
+              <ChevronUp
+                size={16}
+                className={`shrink-0 text-steel transition-transform ${accountOpen ? "" : "rotate-180"}`}
+              />
+            </>
+          )}
         </button>
-      )}
+
+        {/* Collapsed state: just show logout icon */}
+        {collapsed && (
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="mt-2 flex w-full items-center justify-center rounded-lg px-3 py-2.5 text-steel transition hover:bg-paper hover:text-ink"
+            title="Logout"
+          >
+            <LogOut size={17} />
+          </button>
+        )}
+      </div>
     </aside>
   );
 }
+
