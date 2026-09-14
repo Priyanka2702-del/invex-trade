@@ -27,8 +27,7 @@ export default function LiveTradingPage() {
         {MT5_WEBTRADER_URL ? (
           <>
             <p className="mx-auto mt-2 max-w-md text-sm text-steel">
-              You&apos;re about to open the MT5 WebTrader in a new tab to place live trades.
-            </p>
+You&apos;re about to open the MT5 WebTrader in a new tab to place live trades.            </p>
             <a
               href={MT5_WEBTRADER_URL}
               target="_blank"
