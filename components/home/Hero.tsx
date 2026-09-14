@@ -85,9 +85,9 @@ export default function Hero() {
   className="mt-4 w-full sm:w-auto px-4 sm:px-0"
 >
   <Link
-    href="/promotions"
-    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan to-blue px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-cyan/20 transition-all duration-300 hover:scale-105 active:scale-95"
-  >
+    href="/promotions" 
+
+className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-amber-500/20 transition-all duration-300 hover:scale-105 active:scale-95">
     Up to 50% Rewards for New Users
   </Link>
 </motion.div>

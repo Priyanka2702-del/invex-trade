@@ -9,7 +9,7 @@ export default function SupportButton() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-24 right-5 z-50 sm:bottom-20 sm:right-6">
+    <div className="fixed bottom-32 right-3 z-50 sm:bottom-24 sm:right-5 lg:bottom-20 lg:right-6">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -27,7 +27,7 @@ export default function SupportButton() {
               href="/contact"
               onClick={() => setOpen(false)}
               className="block rounded bg-blue px-4 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-blue-deep"
-            >
+            >git add .git add .
               Contact Support
             </Link>
           </motion.div>
@@ -38,12 +38,13 @@ export default function SupportButton() {
         type="button"
         aria-label={open ? "Close support menu" : "Open support menu"}
         onClick={() => setOpen((v) => !v)}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-blue text-white shadow-lg transition hover:bg-blue-deep"
+        className="relative flex h-11 w-11 items-center justify-center rounded-full bg-blue text-white shadow-lg transition hover:bg-blue-deep sm:h-14 sm:w-14"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
         <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-blue/40" style={{ animationDuration: "2.4s" }} />
-        {open ? <X size={22} /> : <MessageCircle size={22} />}
+        {open ? <X size={18} className="sm:hidden" /> : <MessageCircle size={18} className="sm:hidden" />}
+        {open ? <X size={22} className="hidden sm:block" /> : <MessageCircle size={22} className="hidden sm:block" />}
       </motion.button>
     </div>
   );
