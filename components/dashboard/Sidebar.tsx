@@ -104,9 +104,9 @@ export default function Sidebar() {
 
       {/* Account / UID block — pinned to bottom */}
       <div className="relative mt-4 border-t border-line pt-4">
-        {/* Dropdown menu — opens upward (absolutely positioned above trigger) */}
+        {/* Dropdown menu — opens downward below trigger */}
         {accountOpen && !collapsed && (
-          <nav className="absolute bottom-full left-0 right-0 mb-2 flex flex-col gap-0.5 rounded-lg border border-line bg-white p-1 shadow-md">
+          <nav className="absolute top-full left-0 right-0 mt-2 flex flex-col gap-0.5 rounded-lg border border-line bg-white p-1 shadow-md z-10">
             {accountLinks.map((l) => (
               <Link
                 key={l.label}

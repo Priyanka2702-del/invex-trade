@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import { Radio } from "lucide-react";
+import { Radio, ExternalLink } from "lucide-react";
 import TradingViewChart from "@/components/dashboard/TradingViewChart";
 import SymbolSearch, { tradableSymbols } from "@/components/dashboard/SymbolSearch";
 import OrderPanel from "@/components/dashboard/OrderPanel";
@@ -22,13 +22,15 @@ export default function TradingPage() {
         </div>
         <div className="flex items-center gap-3">
           <SymbolSearch value={symbol} onChange={setSymbol} />
-          <Link
-            href="/dashboard/live-trading"
+          <a
+            href="https://web.metatrader.app/terminal?mode=demo&lang=en"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex shrink-0 items-center gap-2 rounded-lg bg-blue-deep px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
           >
-            <Radio size={16} className="text-cyan" />
-            Live Trading
-          </Link>
+            <ExternalLink size={16} className="text-cyan" />
+            Open MetaTrader
+          </a>
         </div>
       </div>
 

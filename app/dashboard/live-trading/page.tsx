@@ -1,12 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import { Radio, ArrowLeft, ExternalLink, ShieldCheck } from "lucide-react";
+import { Radio, ArrowLeft, MonitorPlay, ShieldCheck } from "lucide-react";
 
-// Set NEXT_PUBLIC_MT5_WEBTRADER_URL once the real MT5 WebTrader integration
-// is available. Until then, this page shows a clear "not yet configured"
-// state instead of a fake trading platform.
 const MT5_WEBTRADER_URL = process.env.NEXT_PUBLIC_MT5_WEBTRADER_URL ?? "";
 
 export default function LiveTradingPage() {
@@ -34,85 +31,70 @@ export default function LiveTradingPage() {
         {MT5_WEBTRADER_URL ? (
           <>
             <p className="mx-auto mt-2 max-w-md text-sm text-steel">
-              You're about to open the MT5 WebTrader in a new tab to place live trades.
+              You&apos;re about to open the MT5 WebTrader in a new tab to place live trades.
             </p>
-
             <a
               href={MT5_WEBTRADER_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-deep"
             >
-              Open MT5 WebTrader <ExternalLink size={15} />
+              Open MT5 WebTrader <MonitorPlay size={15} />
             </a>
           </>
         ) : (
           <>
-            <p className="mx-auto mt-2 max-w-md text-sm text-steel">
-              MT5 trading will be available once the trading platform
-              integration is configured. This page is ready to launch the MT5
-              WebTrader as soon as it is.
+            <p className="mx-auto mt-2 max-w-sm text-sm text-steel">
+              Access real-time markets and execute trades directly through the MetaTrader 5 platform — trusted by millions of traders worldwide.
             </p>
-            <a
-              href="https://web.metatrader.app/terminal?mode=demo&lang=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue-deep px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-deep"
+
+            {/* Feature highlights */}
+            <div className="mx-auto mt-6 grid max-w-lg grid-cols-3 gap-4 text-left">
+              <div className="rounded-lg border border-line bg-paper px-3 py-3">
+                <div className="mb-1 text-xs font-semibold text-ink">⚡ Real-Time Execution</div>
+                <p className="text-[11px] text-steel">Ultra-low latency order execution on live markets.</p>
+              </div>
+              <div className="rounded-lg border border-line bg-paper px-3 py-3">
+                <div className="mb-1 text-xs font-semibold text-ink">🧪 Demo Account</div>
+                <p className="text-[11px] text-steel">Practice risk-free with virtual funds before going live.</p>
+              </div>
+              <div className="rounded-lg border border-line bg-paper px-3 py-3">
+                <div className="mb-1 text-xs font-semibold text-ink">📊 MT5 Powered</div>
+                <p className="text-[11px] text-steel">Full access to charts, indicators, and expert advisors.</p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setShowIframe((v) => !v)}
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-blue-deep px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
             >
-              Open MetaTrader Demo <ExternalLink size={15} />
-            </a>
+              <MonitorPlay size={16} />
+              {showIframe ? "Hide Trading Platform" : "Live/Demo Trading"}
+            </button>
           </>
         )}
 
-        {/* Iframe Test Section for manual checking - opens iframe to test embedding issues */}
-        <div className="mt-6 rounded-xl border border-line bg-white p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-ink">MetaTrader Iframe Test</h3>
-            <button
-              onClick={() => {
-                const iframeDiv = document.getElementById('mt-iframe-test');
-                if (iframeDiv) {
-                  iframeDiv.style.display = iframeDiv.style.display === 'none' ? 'block' : 'none';
-                }
-              }}
-              className="text-xs text-blue hover:text-ink"
-            >
-              Toggle Iframe
-            </button>
+        {/* MetaTrader iframe — toggled by Live/Demo Trading button */}
+        {showIframe && (
+          <div className="mt-6 rounded-xl border border-line bg-white p-6">
+            <iframe
+              src="https://web.metatrader.app/terminal?mode=demo&lang=en"
+              style={{ border: "none", width: "100%", height: "800px" }}
+              onLoad={() => console.log("Iframe loaded successfully")}
+              onError={() => console.log("Iframe failed to load")}
+            />
           </div>
-          <iframe
-            id="mt-iframe-test"
-            src="https://web.metatrader.app/terminal?mode=demo&lang=en"
-            style={{ border: 'none', width: '100%', height: '800px' }}
-            onLoad={() => console.log('Iframe loaded successfully') }
-            onError={() => {
-              console.log('Iframe failed to load - likely X-Frame-Options blocking');
-              alert('Iframe blocked - this is why we use new tab approach');
-              const iframeDiv = document.getElementById('mt-iframe-test');
-              if (iframeDiv) {
-                iframeDiv.style.display = 'none';
-              }
-            }}
-          />
-        </div>
-        <br />
+        )}
 
         <div className="mx-auto mt-8 flex max-w-md items-start gap-2.5 rounded-lg border border-line px-4 py-3 text-left text-xs text-steel">
-          <ShieldCheck
-            size={15}
-            className="mt-0.5 shrink-0 text-blue"
-          />
-
+          <ShieldCheck size={15} className="mt-0.5 shrink-0 text-blue" />
           <span>
             Charts and market analysis on the{" "}
-            <Link
-              href="/dashboard/trading"
-              className="font-medium text-blue hover:underline"
-            >
+            <Link href="/dashboard/trading" className="font-medium text-blue hover:underline">
               INVEX Trading
-            </Link>
-            page are powered by TradingView and are separate from live order execution, which
-            only happens through your connected MT5 account.
+            </Link>{" "}
+            page are powered by TradingView and are separate from live order
+            execution, which only happens through your connected MT5 account.
           </span>
         </div>
       </div>
