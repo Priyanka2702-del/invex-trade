@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   Menu, X, ShieldCheck, Download, LogOut,
   Home, Wallet2, Banknote, LineChart, Copy, Gift, FolderDown,
-  Wrench, Gem, UserCircle, Radio,
+  Wrench, Gem, UserCircle, Radio, TrendingUp,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { logout } from "@/lib/session";
@@ -18,6 +18,7 @@ const links = [
   { label: "Funds", href: "/dashboard/funds", icon: Banknote },
   { label: "INVEX Trading", href: "/dashboard/trading", icon: LineChart },
   { label: "INVEX Copy", href: "/dashboard/copy", icon: Copy },
+  { label: "PAMM Invest", href: "/dashboard/pamm-invest", icon: TrendingUp },
   { label: "Promotions", href: "/dashboard/promotions", icon: Gift },
   { label: "Downloads", href: "/dashboard/downloads", icon: FolderDown },
   { label: "Tools", href: "/dashboard/tools", icon: Wrench },

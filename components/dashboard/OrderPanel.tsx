@@ -15,8 +15,6 @@ export default function OrderPanel({ symbol }: { symbol?: string }) {
     <div className="rounded-xl border border-line bg-white p-4">
       <div className="mb-1 text-sm font-semibold text-ink">Place Order</div>
       <p className="mb-4 flex items-start gap-1.5 text-xs text-steel">
-        <Info size={13} className="mt-0.5 shrink-0" />
-        Frontend demo — no order is actually executed until a live MT5 account is connected.
       </p>
 
       <div className="mb-4 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line">

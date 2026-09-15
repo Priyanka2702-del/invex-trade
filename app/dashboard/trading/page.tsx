@@ -5,8 +5,6 @@ import Link from "next/link";
 import { Radio, ExternalLink } from "lucide-react";
 import TradingViewChart from "@/components/dashboard/TradingViewChart";
 import SymbolSearch, { tradableSymbols } from "@/components/dashboard/SymbolSearch";
-import OrderPanel from "@/components/dashboard/OrderPanel";
-import PositionsTable from "@/components/dashboard/PositionsTable";
 import Watchlist from "@/components/dashboard/Watchlist";
 
 export default function TradingPage() {
@@ -34,29 +32,20 @@ export default function TradingPage() {
         </div>
       </div>
 
-      <div className="mb-6 grid gap-6 xl:grid-cols-[1fr_320px]">
+      <div className="grid gap-6 xl:grid-cols-[1fr_320px]">
         <div className="min-w-0">
           <TradingViewChart symbol={symbol} theme="light" height={520} />
           <p className="mt-2 text-xs text-steel">
-            Chart for {activeLabel} — market visualization only. Placing an order below does not
-            execute a real trade until a live trading account and backend are connected via{" "}
+            Chart for {activeLabel} — market visualization only. Connect a live trading account
+            via{" "}
             <Link href="/dashboard/live-trading" className="font-medium text-blue hover:underline">
               Live Trading
-            </Link>
-            .
+            </Link>{" "}
+            to place real orders.
           </p>
         </div>
         <div className="min-w-0">
           <Watchlist />
-        </div>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <div className="min-w-0">
-          <PositionsTable />
-        </div>
-        <div className="min-w-0">
-          <OrderPanel symbol={symbol} />
         </div>
       </div>
     </div>

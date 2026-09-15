@@ -1,6 +1,6 @@
 import {
   WatchlistItem, Position, MarketQuote, MarketCategoryKey,
-  UserAccount, Transaction, VerificationStep, CopyTrader, Promotion, DownloadPlatform,
+  UserAccount, Transaction, VerificationStep, CopyTrader, Promotion, DownloadPlatform, PammPool,
 } from "@/types/dashboard";
 
 export const watchlist: WatchlistItem[] = [
@@ -197,6 +197,7 @@ export const downloadPlatforms: DownloadPlatform[] = [
     url: "https://web.metatrader.app/terminal?mode=demo&lang=en",
   },
 ];
+
 // ===== Tools =====
 export const dashboardTools = [
   { key: "pip", label: "Pip Calculator", description: "Work out the value of a single pip for your position size." },
@@ -204,3 +205,104 @@ export const dashboardTools = [
   { key: "pnl", label: "Profit / Loss Calculator", description: "Estimate potential profit or loss before you trade." },
   { key: "position", label: "Position Size Calculator", description: "Size your position based on account risk %." },
 ] as const;
+
+// ===== PAMM Invest — development/mock data. No real pooled-fund backend
+// is connected yet; wallet balance and positions shown here are placeholder
+// until the PAMM engine is wired up. =====
+export const pammSummary = {
+  walletBalance: "$0.00",
+  yourInvestment: "$0.00",
+  totalProfitReceived: "$0.00",
+};
+
+export const pammPools: PammPool[] = [
+  {
+    id: "invex-momentum",
+    name: "INVEX Momentum",
+    status: "Active",
+    totalAUM: "$1,400,000.00",
+    baseCapital: "$5,000.00",
+    monthlyReturn: "+7.20%",
+    monthlyReturnUp: true,
+    activeStrategies: 4,
+    riskMode: "Balanced",
+    profitReporting: "Daily",
+    allocation: [
+      { label: "Metals", percent: 66 },
+      { label: "Indices", percent: 18 },
+      { label: "Crypto", percent: 16 },
+    ],
+  },
+  {
+    id: "invex-algo-fx",
+    name: "INVEX Algo FX",
+    status: "Active",
+    totalAUM: "$2,500,000.00",
+    baseCapital: "$100,000.00",
+    monthlyReturn: "+4.70%",
+    monthlyReturnUp: true,
+    activeStrategies: 4,
+    riskMode: "Balanced",
+    profitReporting: "Daily",
+    allocation: [
+      { label: "FX Basket", percent: 42 },
+      { label: "Metals", percent: 24 },
+      { label: "Indices", percent: 18 },
+      { label: "Crypto", percent: 16 },
+    ],
+  },
+  {
+    id: "invex-diversified",
+    name: "INVEX Diversified",
+    status: "Active",
+    totalAUM: "$2,500,000.00",
+    baseCapital: "$100,000.00",
+    monthlyReturn: "+6.80%",
+    monthlyReturnUp: true,
+    activeStrategies: 4,
+    riskMode: "Balanced",
+    profitReporting: "Daily",
+    allocation: [
+      { label: "FX Basket", percent: 42 },
+      { label: "Metals", percent: 24 },
+      { label: "Indices", percent: 18 },
+      { label: "Crypto", percent: 16 },
+    ],
+  },
+  {
+    id: "invex-growth",
+    name: "INVEX Growth Pool",
+    status: "Active",
+    totalAUM: "$250,500.00",
+    baseCapital: "$1,000,000.00",
+    monthlyReturn: "+12.30%",
+    monthlyReturnUp: true,
+    activeStrategies: 3,
+    riskMode: "Aggressive",
+    profitReporting: "Daily",
+    allocation: [
+      { label: "FX Basket", percent: 42 },
+      { label: "Metals", percent: 24 },
+      { label: "Indices", percent: 18 },
+      { label: "Crypto", percent: 16 },
+    ],
+  },
+  {
+    id: "invex-steady-yield",
+    name: "INVEX Steady Yield",
+    status: "Active",
+    totalAUM: "$1,239.98",
+    baseCapital: "$2,300,000.00",
+    monthlyReturn: "+16.30%",
+    monthlyReturnUp: true,
+    activeStrategies: 10,
+    riskMode: "Conservative",
+    profitReporting: "Daily",
+    allocation: [
+      { label: "FX Basket", percent: 42 },
+      { label: "Metals", percent: 24 },
+      { label: "Indices", percent: 18 },
+      { label: "Crypto", percent: 16 },
+    ],
+  },
+];

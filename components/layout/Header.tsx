@@ -25,7 +25,15 @@ export default function Header({
 
   // Handle scroll detection
   useEffect(() => {
-    const onScroll = () => setScrolledState(window.scrollY > 24);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        setScrolledState(window.scrollY > 24);
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -74,15 +82,19 @@ export default function Header({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 ease-out ${
         scrolled || mobileOpen
           ? "bg-white/95 backdrop-blur-md border-b border-line shadow-sm"
           : "bg-transparent border-transparent"
       }`}
     >
       {/* ==================== TOP ROW (Sub-bar) ==================== */}
-      {!scrolled && !mobileOpen && (
-        <div className="hidden sm:block">
+      <div
+        className={`hidden transition-[grid-template-rows] duration-300 ease-in-out sm:grid ${
+          scrolled || mobileOpen ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
           <div className="mx-auto flex h-8 sm:h-9 max-w-content items-center justify-end gap-4 sm:gap-6 px-4 sm:px-6 text-xs sm:text-sm lg:px-10">
             <Link
               href="/partnership"
@@ -107,7 +119,7 @@ export default function Header({
             /> */}
           </div>
         </div>
-      )}
+      </div>
 
       {/* ==================== MAIN NAVBAR ==================== */}
       <div

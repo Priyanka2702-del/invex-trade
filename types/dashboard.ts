@@ -94,3 +94,19 @@ export type DownloadPlatform = {
   available: boolean;
   url?: string;
 };
+// ===== PAMM Invest =====
+export type PammAllocation = { label: string; percent: number };
+
+export type PammPool = {
+  id: string;
+  name: string;
+  status: "Active" | "Paused";
+  totalAUM: string;
+  baseCapital: string;
+  monthlyReturn: string;
+  monthlyReturnUp: boolean;
+  activeStrategies: number;
+  riskMode: "Conservative" | "Balanced" | "Aggressive";
+  profitReporting: "Daily" | "Weekly" | "Monthly";
+  allocation: PammAllocation[];
+};
