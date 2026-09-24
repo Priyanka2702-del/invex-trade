@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  ShieldCheck, Download, LogOut, ChevronUp, ChevronLeft, ChevronRight,
+  ShieldCheck,  LogOut, ChevronUp, ChevronLeft, ChevronRight,
   Home, Wallet2, Banknote, LineChart, Copy, Gift, FolderDown,
   Wrench, Gem, UserCircle, Radio, TrendingUp,
     ArrowDownToLine, ArrowUpFromLine, Repeat2, LayoutGrid, Handshake, Users,
@@ -15,14 +15,12 @@ import { logout } from "@/lib/session";
 
 const accountLinks = [
   { label: "Verification", href: "/dashboard/verification", icon: ShieldCheck },
-  { label: "Download", href: "/dashboard/download", icon: Download },
 ];
 
 const mainLinks = [
   { label: "Home", href: "/dashboard", icon: Home },
   { label: "My Assets", href: "/dashboard/assets", icon: LayoutGrid },
   { label: "Accounts", href: "/dashboard/accounts", icon: Wallet2 },
-  { label: "Funds", href: "/dashboard/funds", icon: Banknote },
   { label: "Fast Deposit", href: "/dashboard/deposit", icon: ArrowDownToLine },
   { label: "Withdraw", href: "/dashboard/withdraw", icon: ArrowUpFromLine },
   { label: "Transfer", href: "/dashboard/transfer", icon: Repeat2 },
