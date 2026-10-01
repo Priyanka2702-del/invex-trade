@@ -1,21 +1,22 @@
 "use client";
 
 /**
- * TradingView chart, embedded via the free "Advanced Chart" widget's iframe
- * endpoint (widgetembed). This is charting/visualization ONLY — it is not
- * connected to any order-execution backend. Do not treat this component as
- * a trading engine; see components/dashboard/OrderPanel.tsx for the (mock,
- * frontend-only) order UI, and LiveTradingCard for the real-money MT5 flow.
+ * TradingView chart using the free Advanced Chart iframe widget.
+ *
+ * This component is ONLY for TradingView-supported symbols.
+ * Deriv-only symbols should be filtered out before reaching this component.
  */
+type TradingViewChartProps = {
+  symbol?: string;
+  theme?: "light" | "dark";
+  height?: number;
+};
+
 export default function TradingViewChart({
   symbol = "FX:EURUSD",
   theme = "light",
   height = 520,
-}: {
-  symbol?: string;
-  theme?: "light" | "dark";
-  height?: number;
-}) {
+}: TradingViewChartProps) {
   const params = new URLSearchParams({
     symbol,
     interval: "D",
@@ -30,7 +31,9 @@ export default function TradingViewChart({
     withdateranges: "true",
     studies: "",
   });
-  const src = `https://s.tradingview.com/widgetembed/?${params.toString()}`;
+
+  const src =
+    `https://s.tradingview.com/widgetembed/?${params.toString()}`;
 
   return (
     <div
@@ -38,11 +41,11 @@ export default function TradingViewChart({
       style={{ height }}
     >
       <iframe
-        key={symbol + theme}
+        key={`${symbol}-${theme}`}
         src={src}
         className="absolute inset-0 h-full w-full border-0"
         allowFullScreen
-        title="INVEX TradingView Chart"
+        title={`TradingView Chart - ${symbol}`}
       />
     </div>
   );
