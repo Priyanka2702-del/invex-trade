@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   ShieldCheck,  LogOut, ChevronUp, ChevronLeft, ChevronRight,
   Home, Wallet2, Banknote, LineChart, Copy, Gift, FolderDown,
-  Wrench, Gem, UserCircle, Radio, TrendingUp,
+  Wrench, Gem, Award,CircleDollarSign , UserCircle, Radio, TrendingUp,
     ArrowDownToLine, ArrowUpFromLine, Repeat2, LayoutGrid, Handshake, Users,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
@@ -33,6 +33,8 @@ const mainLinks = [
   { label: "Downloads", href: "/dashboard/downloads", icon: FolderDown },
   { label: "Tools", href: "/dashboard/tools", icon: Wrench },
   { label: "Points Mall", href: "/dashboard/points", icon: Gem },
+  { label: "System Rank", href: "/dashboard/system-rank", icon: Award },
+    { label: "Equity Bonus", href: "/dashboard/equity-bonus", icon: CircleDollarSign  },
   { label: "Profile", href: "/dashboard/profile", icon: UserCircle },
 ];
 

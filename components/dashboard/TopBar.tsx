@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Wallet, Bell, Globe, LogOut, Settings } from "lucide-react";
+import { Wallet, Bell, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import MobileNav from "@/components/dashboard/MobileNav";
 import { logout } from "@/lib/session";
@@ -70,16 +70,7 @@ className="rounded-lg bg-blue/10 px-4 py-2 text-sm font-semibold text-blue trans
               ))}
             </div>
           )}
-        </div>
-
-        {/* Language — visual placeholder only; not wired to real translations yet */}
-        <button
-          type="button"
-          aria-label="Language"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-steel hover:text-ink"
-        >
-          <Globe size={18} />
-        </button>
+        </div>       
 
         {/* Profile */}
         <div className="relative">
