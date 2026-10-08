@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   Menu, X, ShieldCheck, Download, LogOut,
   Home, Wallet2, Banknote, LineChart, Copy, Gift, FolderDown,
-  Wrench, Gem, UserCircle, Radio, TrendingUp,
+  Wrench, Gem, Award,UserCircle, Radio, TrendingUp,
    ArrowDownToLine, ArrowUpFromLine, Repeat2, LayoutGrid, Handshake, Users,
 } from "lucide-react";
 import Logo from "@/components/ui/Logo";
@@ -27,9 +27,11 @@ const links = [
   { label: "PAMM Invest", href: "/dashboard/pamm-invest", icon: TrendingUp },
   { label: "Promotions", href: "/dashboard/promotions", icon: Gift },
   { label: "Tools", href: "/dashboard/tools", icon: Wrench },
+{ label: "Verification", href: "/dashboard/verification", icon: ShieldCheck },
   { label: "Points Mall", href: "/dashboard/points", icon: Gem },
-  { label: "Verification", href: "/dashboard/verification", icon: ShieldCheck },
   { label: "Download", href: "/dashboard/download", icon: Download },
+  { label: "System Rank", href: "/dashboard/system-rank", icon: Award },
+  { label: "Equity Bonus", href: "/dashboard/equity-bonus", icon: TrendingUp },
   { label: "Profile", href: "/dashboard/profile", icon: UserCircle },
 ];
 
